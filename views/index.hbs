@@ -1,18 +1,32 @@
-<h2>Todos page</h2>
+<h2>Menu</h2>
 
-{{#if todos.length}}
+{{#if menu.length}}
 <ul>
-  {{#each todos}}
-  <li class="todo">
-    <form action="/complete" method="POST">
+  {{#each menu}}
+  <li class="menu">
+    <form action="/inCart" method="POST">
       <label>
-        {{#if completed}}
-        <input type="checkbox" checked name="completed">
-        <span class="completed">{{title}}</span>
-        {{else}}
-        <input type="checkbox" name="completed">
+          {{!-- <img src="./images/{{title}}.png" alt="img"> --}}
+        <div>
+          <span>In cart</span>
+          {{#if inCart}}
+          <input type="checkbox" checked name="inCart">
+          {{else}}
+          <input type="checkbox" name="inCart">
+          {{/if}}
+        </div>
         <span>{{title}}</span>
-        {{/if}}
+        <span>Price: {{price}}</span>
+       <span>Amount: <input type="number" name="amount" min="1" max="20" value="{{amount}}"></span>
+        <script>
+          let totalAmount{{_id}} = {{price}} * {{amount}};
+          document.addEventListener('DOMContentLoaded', function() {
+            let totalAmountElement = document.getElementById('totalAmount{{_id}}');
+            totalAmountElement.innerHTML = totalAmount{{_id}};
+          });
+        </script>
+        <span>Total Price: <span id="totalAmount{{_id}}"></span></span>
+
 
         <input type="hidden" value="{{_id}}" name="id">
 
@@ -23,5 +37,5 @@
   {{/each}}
 </ul>
 {{else}}
-<p>No todos!</p>
+<p>Nothing here...</p>
 {{/if}}

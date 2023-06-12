@@ -5,10 +5,18 @@ const schema = new Schema({
     type: String,
     required: true
   },
-  completed: {
+  inCart: {
     type: Boolean,
     default: false
+  },
+  amount: {
+    type: Number,
+    default: 1
+  },
+  price: {
+    type: Number,
+    default: 10
   }
 })
 
-module.exports = model('Todo', schema)
+module.exports = model('Menu', schema)

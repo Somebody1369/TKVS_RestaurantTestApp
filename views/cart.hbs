@@ -1,0 +1,49 @@
+<h2>Cart</h2>
+
+{{#if menu.length }}
+<ul>
+  {{#each menu }}
+  {{#if inCart }}
+  <li class="menu">
+    <form action="/inCartCartPage" method="POST">
+      <label>
+        <div>
+          <span>In cart</span>
+          {{#if inCart}}
+          <input type="checkbox" checked name="inCart">
+          {{else}}
+          <input type="checkbox" name="inCart">
+          {{/if}}
+        </div>
+        <span>{{title}}</span>
+        <span>Price: {{price}}</span>
+        <span>Amount: <input type="number" name="amount" min="1" max="20" value="{{amount}}"></span>
+        <script>
+          let totalAmount_{{ _id }} = {{ price }} * {{ amount }};
+          document.addEventListener('DOMContentLoaded', function () {
+            let totalAmountElement = document.getElementById('totalAmount{{_id}}');
+totalAmountElement.innerHTML = totalAmount_{{_id}};
+
+          });
+        </script>
+        <span>Total Price: <span id="totalAmount{{_id}}"></span></span>
+
+
+
+        <input type="hidden" value="{{_id}}" name="id">
+        <button class="btn btn-small" type="submit">Save</button>
+      </label>
+    </form>
+  </li>
+  {{/if}}
+  {{/each}}
+  <form action="/payment">
+  <span style="margin-top: 20px">Call me
+    <input type="checkbox" name="callMe">
+  </span>
+  <button style="width: 100%; padding: 10px 30px; max-width: 200px">Order</button>
+  </form>
+</ul>
+{{else}}
+<p>Nothing here...</p>
+{{/if}}

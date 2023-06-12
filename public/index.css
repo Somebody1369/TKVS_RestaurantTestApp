@@ -1,21 +1,129 @@
-.todo {
-  margin-bottom: 1rem;
+header,
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: black;
+  background-color: #cabdcb;
+  font-weight: 400px;
+  font-family: 'Poppins', sans-serif;
 }
 
-.todo span.completed {
-  text-decoration: line-through;
+.logo {
+  font-size: 40px;
 }
 
-.todo label {
-  width: 100%;
+main,
+header {
+  width: auto;
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 0 50px;
+
+  @media screen and (max-width: 820px) {
+    padding: 0 24px;
+    max-width: 782px;
+  }
+}
+
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  padding: 4px 20px;
+  border-radius: 15px;
+  border: 1px solid black;
+
+  color: black;
+  margin-top: 8px;
+  text-decoration: none;
+  background: transparent;
+}
+button:hover {
+  color: white;
+  background: black;
+}
+
+input {
+  border-radius: 5px;
+  border: none;
+}
+
+
+a {
+  outline: none;
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+li {
+  list-style-type: none;
+}
+li.active a {
+  text-decoration: underline;
+}
+
+
+
+nav, nav ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
-  background: #f3f3f3;
-  padding: 1rem;
+}
+nav ul li + li {
+  margin-left: 20px;
 }
 
-.todo i {
+
+
+
+.menu {
+  margin-bottom: 1rem;
+}
+
+.menu label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+    align-items: flex-start;
+  justify-content: space-between;
+  cursor: pointer;
+  padding: 1rem;
+}
+.menu label div {
+  display: flex;
+  align-items: inherit;
+}
+
+.menu i {
   z-index: 2;
+}
+
+.menu div, .menu span {
+  margin-bottom: 10px;
+}
+
+.menu span button {
+  border: none;
+  background: transparent;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+form label + label {
+  margin-top: 10px;
+}
+form button {
+  max-width: 200px;
 }
