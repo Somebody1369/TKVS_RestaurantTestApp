@@ -3,8 +3,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const exphbs = require("express-handlebars");
 const menuRoutes = require("./routes/menu");
-const paymentRouter = require('./routes/payment');
-
+const paymentRouter = require("./routes/payment");
 
 //auth
 const session = require("express-session");
@@ -12,11 +11,14 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 const authRoutes = require("./routes/auth");
+const favicon = require("serve-favicon");
 
 //all
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
 const hbs = exphbs.create({
   defaultLayout: "main",
   extname: "hbs",
@@ -28,7 +30,6 @@ app.set("views", "views");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
-
 
 //auth
 // Настройка сессий
@@ -83,7 +84,7 @@ const isAuthenticated = (req, res, next) => {
   }
   next();
 };
-console.log(isAuthenticated)
+console.log(isAuthenticated);
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated();
@@ -91,10 +92,9 @@ app.use((req, res, next) => {
 });
 
 // Подключение маршрутов
-app.use('/payment', paymentRouter);
+app.use("/payment", paymentRouter);
 app.use("/", authRoutes);
 app.use(menuRoutes);
-
 
 //Функция подключения у БД и запуска сервера
 async function start() {
