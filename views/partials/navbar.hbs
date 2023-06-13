@@ -1,5 +1,5 @@
 <nav>
-  <a href="/" class="logo">LOGO</a>
+  <img href="/" class="logo" src="/images/logo-rest.png" alt="Logo">
   <ul style="flex-direction: row">
     {{#if isAuthenticated}}
     {{#if isIndex}}
@@ -24,6 +24,12 @@
 
     
     {{else}}
+    {{#if isIndex}}
+    <li class="active"><a href="/">Menu</a></li>
+    {{else}}
+    <li><a href="/">Menu</a></li>
+    {{/if}}
+    
     {{#if isLogin}}
     <li class="active"><a href="/login">Login</a></li>
     {{else}}

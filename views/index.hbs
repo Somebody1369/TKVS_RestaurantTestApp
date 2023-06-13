@@ -1,4 +1,4 @@
-<h2>Menu</h2>
+<h2 class="page-title">Menu</h2>
 
 {{#if menu.length}}
 <ul>
@@ -6,7 +6,7 @@
   <li class="menu">
     <form action="/inCart" method="POST">
       <label>
-          {{!-- <img src="./images/{{title}}.png" alt="img"> --}}
+          <img class="product-image {{title}}" src="/images/{{title}}.png" alt="img">
         <div>
           <span>In cart</span>
           {{#if inCart}}
@@ -16,7 +16,7 @@
           {{/if}}
         </div>
         <span>{{title}}</span>
-        <span>Price: {{price}}</span>
+        <span>Price: ${{price}}</span>
        <span>Amount: <input type="number" name="amount" min="1" max="20" value="{{amount}}"></span>
         <script>
           let totalAmount{{_id}} = {{price}} * {{amount}};
@@ -25,7 +25,7 @@
             totalAmountElement.innerHTML = totalAmount{{_id}};
           });
         </script>
-        <span>Total Price: <span id="totalAmount{{_id}}"></span></span>
+        <span>Total Price: $<span id="totalAmount{{_id}}"></span></span>
 
 
         <input type="hidden" value="{{_id}}" name="id">
@@ -35,6 +35,9 @@
     </form>
   </li>
   {{/each}}
+  {{#unless isAuthenticated}}
+  <p class="info-ps">*Login or sign up to place an order</p>
+  {{/unless}}
 </ul>
 {{else}}
 <p>Nothing here...</p>
