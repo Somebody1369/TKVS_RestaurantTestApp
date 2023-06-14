@@ -15,12 +15,13 @@
     {{/if}}
     <li><a href="/logout">Logout</a></li>
 
-
-    {{!-- {{#if isCreate}}
+    {{#if (and (eq user.username "admin") (eq user.password "$2a$10$8tdFkW03qYGsPLgaaebs4OaRXaIZdy1b0zNyyfa1yI3Ayot32Kxv2"))}}
+    {{#if isCreate}}
     <li class="active"><a href="/create">Create</a></li>
     {{else}}
     <li><a href="/create">Create</a></li>
-    {{/if}} --}}
+    {{/if}}
+    {{/if}}
 
     
     {{else}}

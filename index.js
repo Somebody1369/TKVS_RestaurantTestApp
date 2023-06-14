@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const exphbs = require("express-handlebars");
+const handlebarsHelpers = require("handlebars-helpers");
 const menuRoutes = require("./routes/menu");
 const paymentRouter = require("./routes/payment");
 
@@ -22,6 +23,7 @@ app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 const hbs = exphbs.create({
   defaultLayout: "main",
   extname: "hbs",
+  helpers: handlebarsHelpers(),
 });
 
 app.engine("hbs", hbs.engine);
@@ -89,6 +91,7 @@ console.log(isAuthenticated);
 
 app.use((req, res, next) => {
   res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.user = req.user;
   next();
 });
 

@@ -1,20 +1,20 @@
-# Базовый образ с установленным Node.js
+# Base image with Node.js installed
 FROM node:14
 
-# Установка рабочей директории в контейнере
+# Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Копирование файлов package.json и package-lock.json
+# Copy package.json and package-lock.json files
 COPY package*.json ./
 
-# Установка зависимостей
+# Install dependencies
 RUN npm install
 
-# Копирование всех файлов проекта
+# Copy all project files
 COPY . .
 
-# Открытие порта, который будет слушать ваше приложение
+# Opening the port that your application will listen on
 EXPOSE 3000
 
-# Команда для запуска вашего приложения
+# Command to run your application
 CMD ["npm", "start"]
